@@ -7,40 +7,38 @@ import (
 	"strconv"
 )
 
-func print_slice(sli []int) {
+func PrintSlice(sli []int) {
 	for i := range sli {
 		fmt.Print(sli[i], " ")
 	}
 	fmt.Print("\n")
 }
 
-func bubble_sort(sli []int) {
-	keep_looping := true
-	//loop over the sli, compare and swap every two nums if they are
-	for keep_looping == true {
-		keep_looping = false
-		for i := 0; i <= len(sli)-2; i++ {
-			if sli[i] > sli[i+1] {
-				//swap
-				sli[i], sli[i+1] = sli[i+1], sli[i] 
-				//mark if a next loop is needed
-				if i >= 2 && sli[i-2] > sli[i-1] || i >= 3 && sli[i-3] > sli[i-2]{
-					keep_looping = true
-					fmt.Print("i is ", i, ", sli[i-2] is ", sli[i-2], " and sli[i-1] is ", sli[i-1], ". keep_looping is ",keep_looping)
-				}
-				
+func Swap(sli []int, i int) {
+	sli[i], sli[i+1] = sli[i+1], sli[i]
+
+}
+
+func BubbleSort(sli []int) {
+
+	for i := 0; i < len(sli); i++ {
+		for j := 0; j < len(sli)-i-1; j++ {
+
+			if sli[j] > sli[j+1] {
+				Swap(sli, j)
 			}
-			print_slice(sli)
+			// PrintSlice(sli)
 		}
 	}
 }
 
 func main() {
 	int_sli := []int{}
-	fmt.Print("Enter a sequence of integers: ")
+	fmt.Print("* I do bubble sort! Bubble sort is called that way because at the end of each iteration the largest value bubbles to the end.\n* This program sorts a sequence of up to 10 integers. \n\n")
 	reader := bufio.NewReader(os.Stdin)
 
 	for i := 0; i < 10; i++ {
+		fmt.Print("Write a number to add to sequence or press enter if all inputs are given: ")
 		in_string, _ := reader.ReadString('\n')
 		if in_string == "\n" {
 			break
@@ -50,8 +48,6 @@ func main() {
 		}
 	}
 
-	print_slice(int_sli)
-	// fmt.Print("Slice length is ", len(int_sli), "\n")
-	bubble_sort(int_sli)
-	// print_slice(int_sli)
+	BubbleSort(int_sli)
+	PrintSlice(int_sli)
 }
