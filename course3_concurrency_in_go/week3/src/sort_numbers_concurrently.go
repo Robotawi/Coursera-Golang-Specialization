@@ -36,8 +36,6 @@ func main() {
 		sli_int = append(sli_int, val_int)
 	}
 
-	// fmt.Println(sli_int)
-
 	quarter_size := len(sli_int) / 4
 
 	wg.Add(4)
@@ -61,6 +59,6 @@ func main() {
 	final_sli = append(final_sli, sub_slic...)
 	final_sli = append(final_sli, sub_slid...)
 
-	sort.Ints(final_sli)
+	sort.Ints(final_sli) //implement merge sort instead
 	fmt.Println("\nFinally sorted slice ", final_sli)
 }
